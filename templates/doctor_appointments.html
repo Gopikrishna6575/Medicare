@@ -1,37 +1,37 @@
 {% extends 'doctor_dashboard.html'%}
 {%block content%}
 {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <ul class="flashes">
-                {% for message in messages %}
-                    <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-    {% endwith %}
-    <h1>Appointments for Dr. {{ doctor_name }}</h1>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Patient Name</th>
-                <th>Phone</th>
-                <th>Email</th>
-                <th>Appointment Date</th>
-                <th>Appointment Time</th>
-                <th>Suffering With</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for appointment in appointments %}
-                <tr>
-                    <td>{{ appointment.name }}</td>
-                    <td>{{ appointment.phone }}</td>
-                    <td>{{ appointment.email }}</td>
-                    <td>{{ appointment.appointment_date }}</td>
-                    <td>{{ appointment.appointment_time }}</td>
-                    <td>{{ appointment.suffering_with }}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+{% if messages %}
+<ul class="flashes">
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+<h1>Appointments for Dr. {{ doctor_name }}</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Patient Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Appointment Date</th>
+            <th>Appointment Time</th>
+            <th>Suffering With</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for appointment in appointments %}
+        <tr>
+            <td>{{ appointment.name }}</td>
+            <td>{{ appointment.phone }}</td>
+            <td>{{ appointment.email }}</td>
+            <td>{{ appointment.appointment_date }}</td>
+            <td>{{ appointment.appointment_time }}</td>
+            <td>{{ appointment.suffering_with }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {%endblock%}
