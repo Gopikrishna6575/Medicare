@@ -23,7 +23,7 @@ try:
         password VARCHAR(200) NOT NULL
         )''')
 
-    cursor.execute('''CREATE TABLE IF NOT EXISTS Patients (
+    cursor.execute('''CREATE TABLE IF NOT EXISTS patients (
     patient_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
@@ -37,7 +37,7 @@ try:
     ) AUTO_INCREMENT = 20240001''')
 
 
-    cursor.execute('''CREATE TABLE IF NOT EXISTS Doctors (
+    cursor.execute('''CREATE TABLE IF NOT EXISTS doctors (
     doctor_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
@@ -63,7 +63,7 @@ try:
     doctor_id int  NOT NULL, foreign key(doctor_id) references doctors(doctor_id))''')
 
     cursor.execute('''
-    CREATE TABLE IF NOT EXISTS PatientMedicineUsage (
+    CREATE TABLE IF NOT EXISTS patientmedicineusage (
         patient_id INT NOT NULL,
         admit_date DATE,
         discharged_on DATE,
@@ -76,7 +76,7 @@ try:
         tablet_dosage INT DEFAULT 0,
         room_used INT DEFAULT 0,
         icu_used INT DEFAULT 0,
-        FOREIGN KEY (patient_id) REFERENCES Patients(patient_id))''')
+        FOREIGN KEY (patient_id) REFERENCES patients(patient_id))''')
 
 
     
@@ -380,13 +380,13 @@ def patient_registration():
             cursor = mydb.cursor(buffered=True)
             #cursor.execute('select * from patients')
             # doctor_data=cursor.fetchall()
-            cursor.execute('SELECT COUNT(*) FROM Patients WHERE email=%s', (email,))
+            cursor.execute('SELECT COUNT(*) FROM patients WHERE email=%s', (email,))
             email_count = cursor.fetchone()[0]
             if email_count == 1:
                 flash("Email already exists")
                 return render_template('patient_registration.html')
             else:
-                cursor.execute('INSERT INTO Patients (name, email, password, phone, dob, gender, patient_disease,admit_date, address) VALUES (%s, %s, %s, %s, %s, %s, %s, %s , %s)',
+                cursor.execute('INSERT INTO patients (name, email, password, phone, dob, gender, patient_disease,admit_date, address) VALUES (%s, %s, %s, %s, %s, %s, %s, %s , %s)',
                                (name, email, encrypted_password, phone, dob, gender, patient_disease,admit_date, address))
                 mydb.commit()  # Commit the transaction after insertion
 
@@ -423,7 +423,7 @@ def doctor_registration():
         try:
             mydb = conn.get_connection()
             cursor = mydb.cursor(buffered=True)
-            cursor.execute('SELECT COUNT(*) FROM Doctors WHERE email=%s', (email,))
+            cursor.execute('SELECT COUNT(*) FROM doctors WHERE email=%s', (email,))
             email_count = cursor.fetchone()[0]
             if email_count == 1:
                 session['doctor'] = data['name']
@@ -818,13 +818,6 @@ def doctor_timing():
         return redirect(url_for('doctor_login'))
 
         
-
-
-
-    
-
-
-
 #appointments
 
 @app.route('/appointments')
@@ -867,7 +860,6 @@ def book_appointments():
 
                 flash('Appointment booked successfully. Confirmation email has been sent to your email address.')
                 return render_template('appointments_dashboard.html')
-        return render_template('appointments.html',doctors_details=doctors_details)
 
     except Exception as e:
         print(e)  # Log the exception for debugging purposes
@@ -878,6 +870,7 @@ def book_appointments():
         if mydb.is_connected():
             cursor.close()
             mydb.close()
+    return render_template('appointments.html',doctors_details=doctors_details)
 
 
     
@@ -924,13 +917,6 @@ def doctor_request():
             else:
                 cursor.execute('INSERT INTO doctors_request (name, email,  phone, specialization) VALUES (%s, %s, %s, %s)',(name, email,phone,specialization))
                 mydb.commit()  # Commit the transaction after insertion
-
-                # Send email with credentials
-                # subject = 'Login Credentials'
-                # body = f'Dear {name},\n\nPlease use these credentials to log in to your account:\nEmail: {email}\nPassword: {password}\n\nBest regards,\nYour Healthcare Team'
-                # send_email(receiver_email=email, subject=subject, body=body)
-
-                # flash("Credentials sent successfully! Please use them to log in.")
                 return redirect(url_for('home'))
 
         except Exception as e:
@@ -989,13 +975,10 @@ def accept(email):
                     phone = request.form['phone']
                     specialization = request.form['specialization']
                     
-                    # from_time = request.form['from_time']
-                    # to_time = request.form['to_time']
-                    
                     encrypted_password = bcrypt.generate_password_hash(password).decode('utf-8')
                     
                     
-                    cursor.execute('SELECT COUNT(*) FROM Doctors WHERE email=%s', (email,))
+                    cursor.execute('SELECT COUNT(*) FROM doctors WHERE email=%s', (email,))
                     email_count = cursor.fetchone()[0]
                     if email_count == 1:
                         session['doctor'] = name
@@ -1026,13 +1009,6 @@ def accept(email):
                 mydb.close()
     else:
         return redirect(url_for('adminlogin'))                
-            
-            
-            
-
-
-
-
 
 @app.route('/delete_doctor/<email>')
 def delete(email):  # Added function parameter for email
@@ -1054,55 +1030,6 @@ def delete(email):  # Added function parameter for email
     return redirect(url_for('admin_dashboard'))
 
  
-
-
-# @app.route('/request_appointments',methods=['GET','POST'])
-# def request_appointments():
-#     try:
-#         mydb = conn.get_connection()
-#         cursor = mydb.cursor(buffered=True)
-#         cursor.execute("Select doctor_id,name from doctors")
-#         doctors_details = cursor.fetchall()
-#         print(doctors_details)
-#         if request.method == 'POST':
-#             name = request.form['name']
-#             phone = request.form['phone']
-#             email = request.form['email']
-#             appointment_time = request.form['appointment_time']
-#             appointment_date = request.form['appointment_date']
-#             suffering_with = request.form['suffering_with']
-#             doctor_id = int(request.form['doctor_id'].strip())
-
-#             # Data validation and conflict check
-           
-#             cursor.execute('SELECT * FROM request_appointments WHERE appointment_time=%s AND appointment_date=%s AND doctor_id=%s', (appointment_time, appointment_date, doctor_id))
-#             conflicting_appointments = cursor.fetchall()
-
-#             if conflicting_appointments:
-#                 flash('This time slot is already booked for the appointment. Please choose another time slot.')
-#                 return render_template('appointments.html',doctors_details=doctors_details)
-#             else:
-#                 cursor.execute('INSERT INTO appointments (name, phone, email, appointment_time, appointment_date, suffering_with, doctor_id) VALUES (%s, %s, %s, %s, %s, %s, %s)', (name, phone, email, appointment_time, appointment_date, suffering_with, doctor_id))
-#                 mydb.commit()
-
-#                 # Send email with credentials
-#                 subject = 'Appointment Confirmation'
-#                 body = f'Dear {name},\n\nYour appointment has been successfully booked.\n\nAppointment details:\nDate: {appointment_date}\nTime: {appointment_time}\nDoctor: {doctor_id}\n\nThank you for choosing our services.\n\nBest regards,\nYour Healthcare Team'
-#                 send_email(receiver_email=email, subject=subject, body=body)
-
-#                 flash('Appointment booked successfully. Confirmation email has been sent to your email address.')
-#                 return render_template('appointments_dashboard.html')
-#         return render_template('appointments.html',doctors_details=doctors_details)
-
-#     except Exception as e:
-#         print(e)  # Log the exception for debugging purposes
-#         flash('An error occurred during booking appointment.')
-#         return render_template('error.html')
-
-#     finally:
-#         if mydb.is_connected():
-#             cursor.close()
-#             mydb.close()
 
 #ALL LOGOUT ROUTE
 @app.route('/logout')
