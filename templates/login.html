@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicare</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='login.css')}}">
+    <link rel="icon" href="{{ url_for('static', filename='img/clip_img.png') }}" type="image/png">
+</head>
+{% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+<body>
+    <nav>
+        <a href="{{url_for('home')}}">Home</a>
+    </nav>
+
+    <div class="container">
+        <h1>admin Login</h1>
+        <form method="post">
+            <div class="input-group">
+               
+                <input type="text" id="username" name="username" placeholder="username" required>
+            </div>
+            <div class="input-group">
+               
+                <input type="password" id="password" name="password" placeholder="password" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        <br>
+        <a href="{{url_for('forget')}}">Forgot password?</a>
+        {% if data %}
+        {{data['username']}}
+        {{data['password']}}
+        {% endif %}
+    </div>
+</body>
+</html>

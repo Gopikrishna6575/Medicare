@@ -1,0 +1,5 @@
+secret_key= b'V{)G\xd1\x10\xe9\xd8d1An\x17V\xc0\xd4\xc8f\x87Z=\xe0\xe4"h\x1e\x97q\xa3/'
+salt='otpverification'
+salt2='resetpassword'
+salt3='patientforget'
+salt4='doctorforget'

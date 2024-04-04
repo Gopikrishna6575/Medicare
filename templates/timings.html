@@ -1,0 +1,48 @@
+{% extends 'appointments_dashboard.html'%}
+{% block style %}
+<link rel="stylesheet" href="{{url_for('static',filename='timings.css')}}">
+<link rel="icon" href="{{ url_for('static', filename='img/clip_img.png') }}" type="image/png">
+{%endblock%}
+
+{% block content %}
+{% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>doctor ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>specialization</th>
+                    <th>from_time</th>
+                    <th>to_time</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for doctor in doctor_details %}
+                <tr>
+                    <td>{{ doctor['doctor_id'] }}</td>
+                    <td>{{ doctor['name'] }}</td>
+                    <td>{{ doctor['email'] }}</td>
+                    <td>{{ doctor['phone'] }}</td>
+                    <td>{{ doctor['specialization'] }}</td>
+                    <td>{{ doctor['from_time'] }}</td>
+                    <td>{{ doctor['to_time'] }}</td>
+                    
+                    
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+{% endblock %}

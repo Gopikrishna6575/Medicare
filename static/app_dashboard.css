@@ -1,0 +1,37 @@
+/* Default styles */
+body {
+    font-family: Arial, sans-serif; /* Set default font */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    background-image: url('../static/img/bg.jpg');
+    background-attachment: fixed;
+}
+/* Custom CSS styles */
+.navbar {
+    background-color: #f8f9fa; /* Change navbar background color */
+}
+.nav-link {
+    color: #007bff; /* Change navbar links color */
+}
+.flashes {
+    list-style-type: none; /* Remove bullet points from flashes */
+    padding: 10px; /* Add padding to flashes */
+    background-color: #ffc107; /* Change flashes background color */
+    color: #212529; /* Change flashes text color */
+    border-radius: 5px; /* Add border radius to flashes */
+}
+
+
+/* Media query for devices with max width of 768px (tablets and smaller) */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px; /* Decrease font size for smaller devices */
+    }
+}
+
+/* Media query for devices with max width of 576px (phones and smaller) */
+@media (max-width: 576px) {
+    body {
+        font-size: 12px; /* Further decrease font size for smaller phones */
+    }
+}

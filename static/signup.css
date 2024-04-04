@@ -1,0 +1,135 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    background-image: url(./img/bg.jpg);
+    background-attachment: fixed;
+}
+
+h1{
+    color: #0056b3;
+}
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #007bff;
+    padding: 10px 20px;
+    color: #fff;
+    z-index: 1000;
+}
+
+.container {
+    max-width: 300px;
+    margin: 80px auto;
+    padding: 40px;
+    background-color: rgba(255, 255, 255, 0.9); /* Transparent background */
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.container form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 90%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: #007bff;
+}
+
+button.registerbtn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button.registerbtn:hover {
+    background-color: #0056b3;
+}
+
+p {
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.flashes {
+    list-style-type: none;
+    padding: 0;
+}
+
+.flashes li {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+nav {
+    background-color: #007bff; /* Background color for the navigation */
+    padding: 10px; /* Padding around the navigation links */
+    text-align: right;
+}
+
+nav a {
+    color: #fff; /* Text color for the navigation links */
+    text-decoration: none; /* Remove default underline */
+    padding: 5px 10px; /* Padding for each link */
+    margin-right: 10px; /* Margin between each link */
+    border-radius: 5px; /* Rounded corners for links */
+}
+
+nav a:hover {
+    background-color: #0056b3; /* Background color on hover */
+}
+
+
+/* Media Queries */
+@media screen and (max-width: 600px) {
+    .container {
+        max-width: 90%;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+        width: calc(100% - 20px); /* Adjust padding */
+    }
+}

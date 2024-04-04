@@ -1,0 +1,98 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    padding-top: 50px;
+    margin: 0;
+    background-image: url(../static/img/bg.jpg);
+}
+
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+nav {
+    position: fixed; /* Set the navigation to fixed position */
+    top: 0; /* Align the navigation to the top of the screen */
+    left: 0; /* Align the navigation to the left */
+    width: 100%; /* Make the navigation full-width */
+    background-color: #007bff; /* Set background color to blue */
+    z-index: 1000; /* Set z-index to ensure the navigation appears on top of other elements */
+}
+
+nav ul {
+    list-style-type: none; /* Remove default list styles */
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline-block; /* Display list items horizontally */
+}
+
+nav ul li a {
+    display: block;
+    padding: 10px 20px; /* Add padding to the links */
+    text-decoration: none; /* Remove underline from links */
+    color: #fff; /* Set text color */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+nav ul li a:hover {
+    background-color: #0056b3; /* Change background color on hover */
+}
+
+/* Optional: Add some spacing between menu items */
+nav ul li:not(:last-child) {
+    margin-right: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        max-width: 100%;
+    }
+}

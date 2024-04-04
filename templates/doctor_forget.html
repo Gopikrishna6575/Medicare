@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medicare</title>
+<link rel="icon" href="{{ url_for('static', filename='img/clip_img.png') }}" type="image/png">
+<link rel="stylesheet" href="{{url_for('static',filename='forget.css')}}">
+</head>
+<div class="container">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+<body>
+
+<div class="container">
+    <h2>Forget Password</h2>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    <form  method="post">
+        <input type="email" name="email" placeholder="Enter your email">
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
+</body>
+</html>

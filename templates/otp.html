@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Medicare</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='otp.css')}}"/>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="{{url_for('static',filename='img/Clip_img.png')}}" />
+  </head>
+  <div class="error">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    
+     {% for message in messages %}
+      <center> <b>{{ message }}</b></center>
+     {% endfor %}
+    
+    {% endif %}
+    {% endwith %}
+    {% block body %}{% endblock %}
+    </div>  
+<body>
+<div class="container">
+  <div class="verification-email">
+    <h1 class="verification-email__title">OTP Verification</h1>
+    <p class="verification-email__subtitle">Please enter OTP that sent to your email:</p>
+
+    <form  method="POST" class="verification-email__form" action="{{url_for('otp',token=token)}}">
+      <input type="text" class="verification-email__input" placeholder="Enter code here" name="otp"/>
+      <button type="submit" class="verification-email__button">Verify</button>
+    </form>
+    
+    <!-- <p class="verification-email__resend-link">Didn't receive the code? <a href="#">Resend code</a></p> -->
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicare</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='verify.css')}}">
+    <link rel="icon" href="{{ url_for('static', filename='img/clip_img.png') }}" type="image/png">
+</head>
+{% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+<body>
+    <div class="container">
+        <div class="card">
+            <h3>Enter your email</h3> 
+            <form action="{{url_for('doctor_verify',token=token)}}" id="passwordForm" method="POST">
+                <div class="input-field">
+                    <i class="fa fa-envelope"></i>
+                    <input type="password" name="npassword" id="npassword" required>
+                    <label for="npassword">Enter new password :</label>
+                </div>
+                <div class="input-field">
+                    <i class="fa fa-envelope"></i>
+                    <input type="password" name="cpassword" id="cpassword" required>
+                    <label for="cpassword">Confirm password :</label>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    
+</body>
+</html>

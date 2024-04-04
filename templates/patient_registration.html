@@ -1,0 +1,59 @@
+{% extends 'admin_dashboard.html'%}
+
+{% block style %}
+<link rel="stylesheet" href="{{url_for('static',filename='patient_registration.css')}}">
+<link rel="icon" href="{{ url_for('static', filename='img/clip_img.png') }}" type="image/png">
+{% endblock %}
+
+{% block content %}
+{% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+<div class="container">
+    <h1>Patient Registration</h1>
+    <form action="#" method="post">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" required>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="password">password:</label>
+        <input type="password" id="password" name="password" required>
+        
+        <label for="phone">Phone Number:</label>
+        <input type="number" id="phone" name="phone" required>
+        
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob" required>
+        
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" required>
+            <option value="">Select Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select>
+        
+        <label for="patient_disease">patient_disease:</label>
+        <input type="text" id="patient_disease" name="patient_disease" required>
+
+        <label for="admit_date">admit_date:</label>
+        <input type="date" id="admit_date" name="admit_date" required>
+
+        <label for="address">Address:</label>
+        <textarea id="address" name="address" rows="4" required></textarea>
+        
+        <input type="submit" value="Register">
+    </form>
+</div>
+
+{% endblock %}
+
+

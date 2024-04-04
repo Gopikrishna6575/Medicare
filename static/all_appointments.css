@@ -1,0 +1,49 @@
+/* appointments.css */
+
+/* Apply styles to the table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: #1f1f1f; /* Dark background color */
+    color: #ffffff; /* Text color */
+}
+
+/* Style for table header */
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #333333; /* Dark border color */
+    transition: all 0.3s ease;
+}
+
+/* Hover effect for table rows */
+tr:hover {
+    background-color: #333333; /* Dark hover background color */
+    transform: translateY(-3px);
+}
+
+/* Alternate row background color */
+tr:nth-child(even) {
+    background-color: #292929; /* Dark alternate row background color */
+}
+
+/* Style for table header background */
+th {
+    background-color: #333333; /* Dark header background color */
+    font-weight: bold;
+}
+
+/* Add animation for row hover effect */
+@keyframes rowHover {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+    100% { transform: translateY(0); }
+}
+
+/* Add animation to table row hover */
+tr:hover {
+    animation: rowHover 0.5s ease;
+}

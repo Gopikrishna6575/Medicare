@@ -1,0 +1,56 @@
+{% extends 'admin_dashboard.html'%}
+
+{% block style %}
+<link rel="stylesheet" href="{{url_for('static',filename='patient_medicine_usage.css')}}">
+<link rel="icon" href="{{ url_for('static', filename='img/clip_img.png') }}" type="image/png">
+{%endblock%}
+{%block content%}
+{% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    <form class="container" method="POST">
+        <label for="patient_id">Patient ID:</label>
+        <input type="text" id="patient_id" name="patient_id" required><br><br>
+
+        <label for="admit_date">Admit Date:</label>
+        <input type="date" id="admit_date" name="admit_date" required><br><br>
+
+        <label for="discharged_on">Discharged On:</label>
+        <input type="date" id="discharged_on" name="discharged_on" required><br><br>
+
+        <label for="notes">Notes:</label>
+        <textarea id="notes" name="notes" required></textarea><br><br>
+
+        <label for="injection_name">Injection Name:</label>
+        <input type="text" id="injection_name" name="injection_name" required><br><br>
+
+        <label for="injection_cost">Injection Cost:</label>
+        <input type="text" id="injection_cost" name="injection_cost" required><br><br>
+
+        <label for="injection_dosage">Injection Dosage:</label>
+        <input type="text" id="injection_dosage" name="injection_dosage" required><br><br>
+
+        <label for="tablet_name">Tablet Name:</label>
+        <input type="text" id="tablet_name" name="tablet_name" required><br><br>
+
+        <label for="tablet_cost">Tablet Cost:</label>
+        <input type="text" id="tablet_cost" name="tablet_cost" required><br><br>
+
+        <label for="tablet_dosage">Tablet Dosage:</label>
+        <input type="text" id="tablet_dosage" name="tablet_dosage" required><br><br>
+
+        <label for="room_used">Room Used:</label>
+        <input type="text" id="room_used" name="room_used" required><br><br>
+
+        <label for="icu_used">ICU Used:</label>
+        <input type="text" id="icu_used" name="icu_used" required><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+{%endblock%}

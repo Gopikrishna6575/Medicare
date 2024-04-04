@@ -1,0 +1,43 @@
+/* appointments.css */
+
+/* Navbar styling */
+body{
+    background-image: url(./img/bg.jpg);
+    background-attachment: fixed;
+}
+
+/* Adjust content margin to prevent overlapping */
+.content {
+    margin-top: 60px; /* Adjust according to your navbar height */
+}
+
+/* Table styling */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+/* Table header */
+.table th {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    text-align: left;
+}
+
+/* Table body */
+.table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+/* Alternate row background color */
+.table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Hover effect */
+.table tbody tr:hover {
+    background-color: #e9ecef;
+}

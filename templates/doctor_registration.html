@@ -1,0 +1,39 @@
+{% extends 'admin_dashboard.html' %}
+{% block style %}
+<link rel="stylesheet" href="{{url_for('static',filename='doctor_registration.css')}}">
+<link rel="icon" href="{{ url_for('static', filename='img/clip_img.png') }}" type="image/png">
+{% endblock %}
+
+{% block content %}
+{% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+<div class="container">
+    <h2>Doctor Registration</h2>
+    <form method="post">
+
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" required>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="phone"  required>
+        
+        <label for="specialization">Specialization:</label>
+        <input type="text" id="specialization" name="specialization" required>
+        
+        <input type="submit" value="Register">
+    </form>
+</div>
+{% endblock %}

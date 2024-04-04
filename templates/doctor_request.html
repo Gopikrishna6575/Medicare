@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicare</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='doctor_request.css')}}">
+    <link rel="icon" href="{{ url_for('static', filename='img/clip_img.png') }}" type="image/png">
+</head>
+{% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+<body>
+    <nav>
+        <ul>
+            <li>
+                <a href="{{url_for('home')}}">Home</a>
+            </li>
+        </ul>
+    </nav>
+    <h1>Doctor Request Form</h1>
+    <form  method="post" class="container">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" required><br>
+        
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br>
+        
+        <label for="phone">Phone:</label><br>
+        <input type="text" id="phone" name="phone" required><br>
+        
+        <label for="specialization">Specialization:</label><br>
+        <input type="text" id="specialization" name="specialization" required><br>
+        
+        <button type="submit">Submit</button>
+    </form>
+
+
+

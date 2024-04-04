@@ -1,0 +1,83 @@
+{% extends 'doctor_dashboard.html'%}
+{% block content %}
+<style>
+    /* Style for the form */
+    form {
+        width: 300px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+
+    /* Style for labels */
+    label {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    /* Style for input fields */
+    input[type="time"] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    /* Style for submit button */
+    input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+
+    /* Style for the div containing the current timings */
+    div {
+        margin-top: 20px;
+    }
+
+    /* Style for the headings */
+    h3,
+    h4 {
+        margin-bottom: 5px;
+        font-family: Arial, sans-serif;
+        color: #333;
+    }
+</style>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul class="flashes">
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+<h1 style="text-align: center;">Update Doctor Timings</h1>
+<form method="POST" action="/update_doctor_timings/{{ doctor_id }}">
+    <label for="from_time">From Time:</label>
+    <input type="time" id="from_time" name="from_time" required>
+    <br>
+    <label for="to_time">To Time:</label>
+    <input type="time" id="to_time" name="to_time" required>
+    <br>
+    <input type="submit" value="Update Timings">
+</form>
+
+<!-- Add any JavaScript or additional HTML content here -->
+<div style="text-align: center;">
+    <h3>Current From Time: {{ timings[0] }}</h3>
+    <h4>Current To Time: {{ timings[1] }}</h4>
+</div>
+{% endblock %}

@@ -1,0 +1,103 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    background-image: url(./img/bg.jpg);
+    background-attachment: fixed;
+}
+
+nav {
+    background-color: #007bff; /* Background color for the navigation */
+    padding: 10px; /* Padding around the navigation links */
+    text-align: right;
+}
+
+nav a {
+    color: #fff; /* Text color for the navigation links */
+    text-decoration: none; /* Remove default underline */
+    padding: 5px 10px; /* Padding for each link */
+    margin-right: 10px; /* Margin between each link */
+    border-radius: 5px; /* Rounded corners for links */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+nav a:hover {
+    background-color: #0056b3; /* Background color on hover */
+}
+
+.container {
+    max-width: 350px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.3s ease; /* Smooth transition */
+}
+
+.container:hover {
+    transform: translateY(-5px); /* Lift the container on hover */
+}
+
+.container h1 {
+    margin-bottom: 20px;
+    color: #007bff; /* Heading color */
+}
+
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333; /* Label color */
+}
+
+.input-group input[type="email"],
+.input-group input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: border-color 0.3s; /* Smooth transition */
+}
+
+.input-group input[type="email"]:focus,
+.input-group input[type="password"]:focus {
+    border-color: #007bff; /* Border color on focus */
+}
+
+button.registerbtn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+button.registerbtn:hover {
+    background-color: #0056b3; /* Background color on hover */
+}
+
+p {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #666; /* Text color */
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s; /* Smooth transition */
+}
+
+a:hover {
+    color: #0056b3; /* Text color on hover */
+}

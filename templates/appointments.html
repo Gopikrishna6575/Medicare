@@ -1,0 +1,48 @@
+{% extends 'appointments_dashboard.html'%}
+
+{%block style%}
+<link rel="stylesheet" href="{{url_for('static',filename='oppointments.css')}}">
+<link rel="icon" href="{{ url_for('static', filename='img/clip_img.png') }}" type="image/png">
+{% endblock %}
+
+{% block content %}
+{% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    <h2>Book an Appointment</h2>
+    <form  method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="phone">phone:</label>
+        <input type="tel" id="phone" name="phone" required>
+        
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" required>
+        
+        <label for="appointment_date">Appointment Date:</label>
+        <input type="date" id="appointment_date" name="appointment_date" required>
+        
+        <label for="appointment_time">Appointment Time:</label>
+        <input type="time" id="appointment_time" name="appointment_time" required>
+        
+        <label for="suffering_with">Reason for Appointment:</label>
+        <input type="text" id="suffering_with" name="suffering_with" required>
+        
+        <label for="doctor_name">Doctor's Name:</label>
+        <select name="doctor_id" id="">
+            <option value="" disabled selected>Select Doctor</option>
+            {% for id,name in doctors_details %}
+            <option value="{{id}}">{{name}}</option>\
+            {% endfor %}
+        </select>
+        
+        <input type="submit" value="Book Appointment">
+    </form>
+{% endblock %}

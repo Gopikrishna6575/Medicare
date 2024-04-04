@@ -1,0 +1,53 @@
+{% extends 'admin_dashboard.html' %}
+
+{% block content %}
+{% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th> <!-- Corrected -->
+                <th scope="col">Specialization</th>
+                <th scope="col">action</th>
+                <th scope="col">action</th>
+                <th scope="col">action</th> <!-- Corrected -->
+            </tr>
+        </thead>
+        <tbody>
+            
+            {% for doctor in doctor_details %}
+            <tr>
+                <td>{{ doctor['name'] }}</td>
+                <td>{{ doctor['email'] }}</td>
+                <td>{{ doctor['phone'] }}</td> <!-- Corrected -->
+                <td>{{ doctor['specialization'] }}</td>
+                {% if doctor['email'] not in emails %}
+                <td><a href="{{url_for('accept',email=doctor['email'])}}"> <button type="submit">accept</button></a>
+                </td>
+                <td> <a href="{{url_for('reject',email=doctor['email'])}}"> <button type="submit">reject</button></a>
+                </td>
+                <td><a href="{{url_for('delete',email=doctor['email'])}}"> <button type="submit">delete</button></a>
+                </td>
+                {% else %}
+                <td><p>Accepted</p>
+                </td>
+                 <td> <!--<a href="#"> <button type="submit">reject</button></a>-->
+                </td>
+                <td><a href="{{url_for('delete',email=doctor['email'])}}"> <button type="submit">delete</button></a>
+                </td>
+                {% endif %}
+                
+            </tr>
+            {% endfor %} <!-- Added endfor tag -->
+        </tbody>
+    </table>
+{% endblock %}
